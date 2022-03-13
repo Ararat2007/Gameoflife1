@@ -34,8 +34,6 @@ class LivingCreature {
 
 
 
-//tt
-
 
 
 
