@@ -1,2 +1,3 @@
+let LivingCreature = require('./LivingCreature')
 
-class Boom  extends LivingCreature {}
+module.exports =class Boom  extends LivingCreature {}

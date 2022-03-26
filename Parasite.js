@@ -1,4 +1,6 @@
-class Parasite extends LivingCreature {
+let LivingCreature = require('./LivingCreature')
+
+module.exports =class Parasite extends LivingCreature {
     constructor(x, y, index){
         super(x, y, index);
         this.energy = 8;
@@ -20,11 +22,11 @@ class Parasite extends LivingCreature {
        return super.chooseCell(character);
    }
    move() {
-    this.energy--
-    var emptyCells = this.chooseCell(0)
-    var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
-
-    if (newCell && this.energy >= 0) {
+       var emptyCells = this.chooseCell(0)
+       var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+       
+       if (newCell && this.energy >= 0) {
+        this.energy--
         console.log(newCell)
         var newX = newCell[0]
         var newY = newCell[1]
@@ -84,8 +86,10 @@ eat() {
 
 mul() {
     this.multiply++;
-    var emptyCells = this.chooseCell(0);
-    var newCell = random(emptyCells);
+    // var emptyCells = this.chooseCell(0);
+    // var newCell = random(emptyCells);
+    let emptyCells = this.chooseCell(0)
+    let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
     console.log(emptyCells);
     if (newCell && this.multiply >= 30) {

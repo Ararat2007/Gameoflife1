@@ -1,4 +1,6 @@
-class Parasite1 extends LivingCreature {
+let LivingCreature = require('./LivingCreature')
+
+module.exports =class Parasite1 extends LivingCreature {
     constructor(x, y, index){
         super(x, y, index);
         this.energy = 8;
@@ -20,11 +22,10 @@ class Parasite1 extends LivingCreature {
        return super.chooseCell(character);
    }
    move() {
-    this.energy--
-    var emptyCells = this.chooseCell(0)
-    var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
-    var a = Math.floor(Math.random() * 7);
-    if (newCell && this.energy >= 0) {
+       var emptyCells = this.chooseCell(0)
+       var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+       if (newCell && this.energy >= 0) {
+        this.energy--
         console.log(newCell)
         var newX = newCell[0]
         var newY = newCell[1]
@@ -44,15 +45,9 @@ class Parasite1 extends LivingCreature {
 eat() {
     var emptyCells1 = this.chooseCell(5)
     var newCell1 = emptyCells1[Math.floor(Math.random() * emptyCells1.length)]
-
-
     var emptyCells = this.chooseCell(4)
     var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
-
-
-
-    var a = Math.floor(Math.random() * 7);
     if (newCell) {
         this.energy++
         var newX = newCell[0]
@@ -92,8 +87,10 @@ eat() {
 
 mul() {
     this.multiply++;
-    var emptyCells = this.chooseCell(0);
-    var newCell = random(emptyCells);
+    // var emptyCells = this.chooseCell(0);
+    // var newCell = random(emptyCells);
+    let emptyCells = this.chooseCell(0)
+    let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
     console.log(emptyCells);
     if (newCell && this.multiply >= 30) {
