@@ -102,6 +102,11 @@ mul() {
         parasite1Arr.push(newGrass);
         this.multiply = 0;
     }
+
+    if (weath == "winter") {
+        this.energy -= 1;
+        this.multiply -= 1;
+    }
 }
 
 

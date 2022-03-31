@@ -73,6 +73,9 @@ GrassEaterEaterArr = [];
 parasiteArr = [];
 parasite1Arr = [];
 BoomArr = [];
+
+weath = "winter";
+
 Grass = require("./grass");
 GrassEater = require("./GrassEater");
 Boom = require("./Boom");
@@ -142,14 +145,13 @@ function kill() {
   io.sockets.emit("send matrix", matrix);
 }
 
-function addGrass() {
+function addGrassEater() {
   for (var i = 0; i < 10; i++) {
     var x = Math.floor(Math.random() * matrix[0].length);
     var y = Math.floor(Math.random() * matrix.length);
     if (matrix[y][x] == 0) {
-      matrix[y][x] = 1;
-      var gr = new Grass(x, y, 1);
-      grassArr.push(gr);
+      matrix[y][x] = 2;
+      grassEaterArr.push( new GrassEater(x, y, 2));
     }
   }
   io.sockets.emit("send matrix", matrix);
@@ -166,9 +168,27 @@ function addPredator() {
   io.sockets.emit("send matrix", matrix);
 }
 
+function weather() {
+  if (weath == "winter") {
+      weath = "spring"
+  }
+  else if (weath == "spring") {
+      weath = "summer"
+  }
+  else if (weath == "summer") {
+      weath = "autumn"
+  }
+  else if (weath == "autumn") {
+      weath = "winter"
+  }
+  io.sockets.emit('weather', weath)
+}
+setInterval(weather, 5000);
+
+
 io.on("connection", function (socket) {
   createobject(matrix);
   socket.on("kill", kill);
-  socket.on("add grass", addGrass);
+  socket.on("add grass Eater", addGrassEater);
   socket.on("add Predator", addPredator);
 });

@@ -38,6 +38,10 @@ module.exports =class Predator extends LivingCreature {
         GrassEaterEaterArr.push(newGrass);
         this.multiply = 0;
     }
+    if (weath == "winter") {
+        this.energy -= 3;
+        this.multiply -= 3;
+    }
 }
 move() {
     var emptyCells = this.chooseCell(0)
