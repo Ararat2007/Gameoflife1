@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
+var fs = require("fs");
 
 app.use(express.static("."));
 
@@ -192,3 +193,19 @@ io.on("connection", function (socket) {
   socket.on("add grass Eater", addGrassEater);
   socket.on("add Predator", addPredator);
 });
+
+var statistics = {};
+
+setInterval(function() {
+    statistics.Grass = grassArr.length;
+    statistics.GrassEater = grassEaterArr.length;
+    statistics.Predator = GrassEaterEaterArr.length;
+    statistics.Parasite = parasiteArr.length;
+    statistics.Parasite1 = parasite1Arr.length;
+    statistics.Boom = BoomArr.length;
+    fs.writeFile("statistics.json", JSON.stringify(statistics), function(){
+        console.log("send")
+    })
+},1000)
+
+
